@@ -1,0 +1,74 @@
+{
+  "users": [
+    {
+      "email": "test@test.com",
+      "password": "$2a$10$drTlfFthRhlPLkI4/F5KM.TKdo5uOVCRGfTTXvP.rgqq1kqN9T00S",
+      "firstname": "test",
+      "lastname": "test",
+      "id": 1
+    },
+    {
+      "email": "cgcsf@dgfd.az",
+      "password": "$2a$10$qk1QhiM76ky9NQmb.4FIt.VVGZzxGgRRgH2iv7wW5iBuwP1rokdvW",
+      "firstname": "dfgdsf",
+      "lastname": "sdfsd",
+      "id": 2
+    },
+    {
+      "email": "fghgfh@sss.uy",
+      "password": "$2a$10$MzJh7tvLJgMEoFhVR7Gk0OL1DjwjJaWdDiMcyvYp6oP6p/YX8DuSS",
+      "firstname": "ghfh",
+      "lastname": "hfghfg",
+      "id": 3
+    },
+    {
+      "email": "nur@mail.com",
+      "password": "$2a$10$zx19D0mT3f7GcyAAoj9Gwu.2rQiOJ51EiV7/oHlowOUeg7SmbHlQO",
+      "firstname": "nurlana",
+      "lastname": "aliyeva",
+      "id": 4
+    },
+    {
+      "email": "nur@mail1.com",
+      "password": "$2a$10$CoHnCCltzpy.fbwwP8IAT.4A1JtparB2NpTCAQNT.Ky2fsOeMYtoC",
+      "firstname": "nurlana",
+      "lastname": "aliyeva",
+      "id": 5
+    },
+    {
+      "email": "nurlana@gmail.com",
+      "password": "$2a$10$CpIrcwXF/jpIhrjT..uK9u60WA85/Q5SyAuQDOC.tKhSEAFCloXMy",
+      "firstname": "nurlana",
+      "lastname": "aliyeva",
+      "id": 6
+    },
+    {
+      "email": "test@get.com",
+      "password": "$2a$10$Jks5n.RGRjSsm4hTYmSYxOfkaPisTnR0Vx.nKPz1iYUH6Fi.iiZga",
+      "firstname": "nurlana",
+      "lastname": "aliyeva",
+      "id": 7
+    },
+    {
+      "email": "test@test1.com",
+      "password": "$2a$10$dZlatHIrx7O4/QRNcZSA7exklOGWdnz8UznxBOZiUVmmF7jQaG8l.",
+      "firstname": "nurlana",
+      "lastname": "aliyeva",
+      "id": 8
+    },
+    {
+      "email": "test@mail.ru",
+      "password": "$2a$10$U8FESnVVFh.SzwANze4be.xbysL1uGGYRt1Z1sHgIzzSEVvvAunhi",
+      "firstname": "nurlana",
+      "lastname": "aliyeva",
+      "id": 9
+    },
+    {
+      "email": "test@mail33.ru",
+      "password": "$2a$10$UMSdBr9NrWHbTZ76hh1L8.Ou6wmbXp/zKPHnyTzXvshRzEYAg9c0K",
+      "firstname": "nurlana",
+      "lastname": "aliyeva",
+      "id": 10
+    }
+  ]
+}

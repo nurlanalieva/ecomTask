@@ -1,0 +1,206 @@
+{
+    "products": [{
+            "id": 1,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 100,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 2,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 3,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 4,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 5,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 6,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 7,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 8,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 9,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 10,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 11,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 12,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 13,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 14,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        },
+        {
+            "id": 15,
+            "name": "Tshirt",
+            "base64": "base64",
+            "price": 120,
+            "number": 10,
+            "sale": 50
+        }
+    ],
+    "users": [
+        {
+        "id": 1,
+        "name": "Nurlana",
+        "surname": "Aliyeva",
+        "email": "nur@mail.ru",
+        "password": "123456",
+        "basketProducts": [{
+                "id": 15,
+                "name": "Tshirt",
+                "base64": "base64",
+                "price": 120,
+                "number": 10,
+                "sale": 50
+            },
+            {
+                "id": 11,
+                "name": "Tshirt",
+                "base64": "base64",
+                "price": 120,
+                "number": 10,
+                "sale": 50
+            },
+            {
+                "id": 7,
+                "name": "Tshirt",
+                "base64": "base64",
+                "price": 120,
+                "number": 10,
+                "sale": 50
+            },
+            {
+                "id": 8,
+                "name": "Tshirt",
+                "base64": "base64",
+                "price": 120,
+                "number": 10,
+                "sale": 50
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Nur",
+        "surname": "Ali",
+        "email": "nur@mail.ru",
+        "password": "123456789",
+        "basketProducts": [{
+                "id": 15,
+                "name": "Tshirt",
+                "base64": "base64",
+                "price": 120,
+                "number": 10,
+                "sale": 50
+            },
+            {
+                "id": 11,
+                "name": "Tshirt",
+                "base64": "base64",
+                "price": 120,
+                "number": 10,
+                "sale": 50
+            },
+            {
+                "id": 7,
+                "name": "Tshirt",
+                "base64": "base64",
+                "price": 120,
+                "number": 10,
+                "sale": 50
+            },
+            {
+                "id": 8,
+                "name": "Tshirt",
+                "base64": "base64",
+                "price": 120,
+                "number": 10,
+                "sale": 50
+            }
+        ]
+    }
+]
+
+}
