@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Box, Button, Container, Grid, TextField } from "@mui/material";
 import axios from "axios";
 import { domainUrl } from "../../config/baseUrl";
 
 export default function AddProduct() {
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [picture, setPicture] = useState({})
   const [product, setProduct] = useState({
@@ -17,6 +16,8 @@ export default function AddProduct() {
     // userId: 1
   });
   const addimage = (e) => {
+    console.log(picture,error);
+    
     // console.log(e.srcElement.files);
     setPicture({
       /* contains the preview, if you want to show the picture to the user
@@ -32,7 +33,7 @@ export default function AddProduct() {
     event.preventDefault();
     console.log(product);
 
-    const res = axios({
+     axios({
       method: "post",
       url: domainUrl,
       headers: {
@@ -44,10 +45,10 @@ export default function AddProduct() {
         console.log(res.data.id);
         // setId(res.data.id)
         // setProducts(res.data);
-        setLoading(false);
+        // setLoading(false);
       })
-      .catch((err) => {
-        setLoading(false);
+      .catch(() => {
+        // setLoading(false);
         setError(true);
       });
   };

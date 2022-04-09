@@ -62,6 +62,8 @@ export default function Products() {
     setOpen(false);
   };
   const addimage = (e) => {
+    console.log(e);
+    
     // console.log(e.srcElement.files);
   };
   return (
@@ -212,7 +214,7 @@ export default function Products() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={(e) => editProduct()} autoFocus>
+          <Button onClick={editProduct} autoFocus>
             Edit
           </Button>
         </DialogActions>

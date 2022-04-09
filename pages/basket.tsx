@@ -13,10 +13,8 @@ import {
 import { useGetProducts } from "../services/products";
 
 const Basket = () => {
-  const { products, loading, error } = useGetProducts();
-  const [productsId, setProductsId] = useState();
+  const { products } = useGetProducts();
   const [filteredProducts, setFilteredProducts] = useState([]);
-  // console.log(products, loading, error);
 
   useEffect(() => {
     let cartProductIds = [];
@@ -50,7 +48,7 @@ const Basket = () => {
         >
           <Grid item xs={12}>
           {filteredProducts.map((cardProduct) => (
-            <List
+            <List key={cardProduct.id}
               sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
             >
               <ListItem alignItems="flex-start">

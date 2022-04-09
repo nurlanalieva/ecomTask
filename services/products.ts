@@ -1,16 +1,8 @@
 import { useEffect, useState } from "react";
-import { httpHelper } from "../pages/helpers/httpHelper";
 import axios from "axios";
 import { domainUrl } from "../config/baseUrl";
-interface IProduct {
-  id: number;
-  name: string;
-  base64: string;
-  price: number;
-  stock: number;
-  sale: number;
-  userId: number;
-}
+import { IProduct } from "../interfaces/IProduct";
+
 
 export const useGetProducts = () => {
   const [loading, setLoading] = useState(true);
@@ -19,7 +11,7 @@ export const useGetProducts = () => {
 
   useEffect(() => {
     async function getProduct() {
-      const res = axios({
+      axios({
         method: "get",
         url: domainUrl,
         headers: {
@@ -30,7 +22,7 @@ export const useGetProducts = () => {
           setProducts(res.data);
           setLoading(false);
         })
-        .catch((err) => {
+        .catch(() => {
           setLoading(false);
           setError(true);
         });

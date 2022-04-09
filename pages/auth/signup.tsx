@@ -9,10 +9,12 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { signupUser } from "../../store/actions/auth";
 import { useRouter } from "next/router";
+import PropTypes from 'prop-types';
+
 export interface IErrorMessages {
   firstname: "";
   lastname: "";
@@ -141,7 +143,6 @@ const SignUp = (props) => {
     //     .catch((error) => setError(error));
     // }
   };
-
   useEffect(() => {
     console.log(error);
   }, [error]);
@@ -250,3 +251,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(SignUp);
+SignUp.propTypes = {
+  dispatchSignupUser: PropTypes.func.isRequired,
+};

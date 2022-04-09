@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { domainUrl } from "../config/baseUrl";
-interface IProduct {
-  id: number;
-  name: string;
-  base64: string;
-  price: number;
-  stock: number;
-  sale: number;
-  userId: number;
-}
+import { IProduct } from "../interfaces/IProduct";
 
 export const useGetProduct = (id) => {
   const [loading, setLoading] = useState(true);
@@ -18,7 +10,7 @@ export const useGetProduct = (id) => {
 
   useEffect(() => {
     const url = `${domainUrl}/${id}`;
-    const res = axios({
+     axios({
       method: "get",
       url: url,
       headers: {
@@ -29,7 +21,7 @@ export const useGetProduct = (id) => {
         setProduct(res.data);
         setLoading(false);
       })
-      .catch((err) => {
+      .catch(() => {
         setLoading(false);
         setError(true);
       });

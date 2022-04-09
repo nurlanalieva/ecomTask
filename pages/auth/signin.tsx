@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,9 +13,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect } from "react-redux";
 import { loginUser } from "../../store/actions/auth";
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import PropTypes from 'prop-types';
  
-
 const theme = createTheme();
  const SignIn=(props)=> {
   const [user, setUser] = useState({
@@ -112,3 +112,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(SignIn);
+
+SignIn.propTypes = {
+  dispatchLoginUser: PropTypes.func.isRequired,
+};

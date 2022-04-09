@@ -1,15 +1,5 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { domainUrl } from "../config/baseUrl";
-interface IProduct {
-  id: number;
-  name: string;
-  base64: string;
-  price: number;
-  stock: number;
-  sale: number;
-  userId: number;
-}
 
 export const useEditProduct = (id,data) => {
 //   const [loading, setLoading] = useState(true);
@@ -21,7 +11,7 @@ export const useEditProduct = (id,data) => {
     async function editProduct() {
         domainUrl
     const url = `${domainUrl}/${id}`;
-    const res = axios({
+     axios({
       method: "put",
       url: url,
       headers: {
@@ -36,6 +26,7 @@ export const useEditProduct = (id,data) => {
         // setLoading(false);
       })
       .catch((err) => {
+        console.log(err);
         // setLoading(false);
         // setError(true);
       });

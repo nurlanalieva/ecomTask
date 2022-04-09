@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -13,12 +13,12 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
 function Dashboard() {
-  const { products, loading, error } = useGetProducts();
+  const { products, loading } = useGetProducts();
   const [productsId, setProductsId] = useState([]);
  
-  const addProductLocalStorage = () => {
-    // localStorage.setItem("cartProducts", product);
-  };
+  // const addProductLocalStorage = () => {
+  //   // localStorage.setItem("cartProducts", product);
+  // };
   const addProductToCart = (e, product) => {
     console.log(product);
     // 

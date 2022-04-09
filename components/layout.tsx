@@ -10,7 +10,6 @@ import {
   CssBaseline,
   Toolbar,
   Box,
-  Badge,
   IconButton,
   Divider,
   Typography,
