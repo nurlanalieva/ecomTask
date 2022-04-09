@@ -13,22 +13,18 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 
 function Dashboard() {
-  const { products, loading } = useGetProducts();
+  const [retry, setRetry] = useState(false);
+  const { products, loading } = useGetProducts(retry);
   const [productsId, setProductsId] = useState([]);
- 
-  // const addProductLocalStorage = () => {
-  //   // localStorage.setItem("cartProducts", product);
-  // };
+  
+  
   const addProductToCart = (e, product) => {
-    console.log(product);
-    // 
+    setRetry(!retry);
     if (!productsId.includes(product.id)) {
       setProductsId([...productsId, product.id]);
     }
     localStorage.setItem("cartProductIds", JSON.stringify(productsId));
-    // localStorage.getItem('testObject')   JSON.parse(retrievedObject)
   };
-
 
   return (
     <>
@@ -57,19 +53,23 @@ function Dashboard() {
                     }}
                   >
                     <CardMedia
-                      className={utilStyles.cardMedia}
                       component="img"
-                      image="https://source.unsplash.com/random"
+                      // image="https://source.unsplash.com/random"
+                      image={product.base64}
                       alt="random"
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h6" component="h5">
-                        <span className={utilStyles.salePrice}>
+                        <span
+                          className={product.sale ? utilStyles.salePrice : null}
+                        >
                           {product?.price} AZN
                         </span>
-                        <span>
-                          {(product?.price * product?.sale) / 100} AZN{" "}
-                        </span>
+                        {product.sale ? (
+                          <span>
+                            {(product?.price * (100 - product?.sale)) / 100} AZN{" "}
+                          </span>
+                        ) : null}
                       </Typography>
                       <Typography>Sale : {product?.sale}% </Typography>
                       <Typography>{product?.name}</Typography>

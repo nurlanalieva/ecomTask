@@ -54,9 +54,7 @@
   margin: 0 auto;
   width: 100%;
 }
-.cardMedia{
-  height: 280px;
-}
+
 .salePrice{
   -webkit-text-decoration-line: line-through; /* Safari */
   text-decoration-line: line-through; 

@@ -17,7 +17,6 @@ import {
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
 import Link from "next/link";
-
 export const siteTitle = "Nurlana Aliyeva Ecommerce Site";
 
 const drawerWidth: number = 240;

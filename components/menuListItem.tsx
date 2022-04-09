@@ -5,11 +5,11 @@ import ListItemText from "@mui/material/ListItemText";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
-import Link from "@mui/material/Link";
+import Link from 'next/link';
 
 export const mainListItems = (
   <React.Fragment>
-    <Link href="/dashboard" underline="none" color="inherit">
+    <Link href="/" >
       <ListItemButton>
         <ListItemIcon>
           <DashboardOutlinedIcon />
@@ -17,7 +17,7 @@ export const mainListItems = (
         <ListItemText primary="Dashboard" />
       </ListItemButton>
     </Link>
-    <Link href="/account/userProfile" underline="none" color="inherit">
+    <Link href="/account/userProfile"  >
       <ListItemButton>
         <ListItemIcon>
           <PersonOutlineOutlinedIcon />
@@ -25,7 +25,7 @@ export const mainListItems = (
         <ListItemText primary="Account" />
       </ListItemButton>
     </Link>
-    <Link href="/admin/products" underline="none" color="inherit">
+    <Link href="/admin/products" >
       <ListItemButton>
         <ListItemIcon>
           <AdminPanelSettingsOutlinedIcon />

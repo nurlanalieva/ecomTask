@@ -4,7 +4,7 @@ import { domainUrl } from "../config/baseUrl";
 import { IProduct } from "../interfaces/IProduct";
 
 
-export const useGetProducts = () => {
+export const useGetProducts = (open) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -28,7 +28,7 @@ export const useGetProducts = () => {
         });
     }
     getProduct();
-  }, []);
+  }, [open]);
   return {
     products,
     loading,
@@ -36,21 +36,21 @@ export const useGetProducts = () => {
   };
 };
 
-export const getProducts = () => {
-    const res = axios({
-      method: "get",
-      url: domainUrl,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        console.log(res);
-        res.data;
-        false;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      return res
-};
+// export const getProducts = () => {
+//     const res = axios({
+//       method: "get",
+//       url: domainUrl,
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     })
+//       .then((res) => {
+//         console.log(res);
+//         res.data;
+//         false;
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//       return res
+// };

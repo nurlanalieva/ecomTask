@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
+import Link from 'next/link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -37,7 +37,7 @@ const theme = createTheme();
     if (user) {
       props
       .dispatchLoginUser(user)
-      .then(() => router.push("/dashboard") )
+      .then(() => router.push("/") )
       // .catch(() => this.setState({ error: true }));
     }
   };
@@ -93,7 +93,7 @@ const theme = createTheme();
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="/auth/signup" variant="body2">
+                <Link href="/auth/signup">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
