@@ -12,15 +12,50 @@ import {
 } from "@mui/material";
 import { useGetProducts } from "../services/products";
 import utilStyles from "../styles/utils.module.css";
+import { checkAuth } from "../store/actions/auth";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { IProduct } from "../interfaces/IProduct";
 
-const Basket = () => {
+const Basket = (props) => {
   const [retry, setRetry] = useState(false);
   const { products } = useGetProducts(retry);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
   useEffect(() => {
-    let cartProductIds = [];
     setRetry(!retry);
+    if (props.loggedIn) {
+      console.log(props, "login olub");
+      getLocalStorageProduct();
+console.log(products);
+
+      // const filterByReference = (productsProps, currentUserId) => {
+        // let res = [];
+        // res = productsProps.filter((el) => {
+        // let userProductCart  = [];
+          const userProductCart= products?.find((element) => {
+            return element.userId === props.currentUser.id;
+          });
+          // setFilteredProducts(userProductCart)
+          console.log(userProductCart);
+        // });
+        // return res;
+      // };
+      // setFilteredProducts(filterByReference(products, props.currentUser.id));
+
+    } else if (!props.loggedIn) {
+      console.log("login olmayib");
+      getLocalStorageProduct();
+    }
+  }, []);
+  // useEffect(() => {
+  //  console.log(filteredProducts);
+   
+  // }, [filteredProducts])
+  
+
+  const getLocalStorageProduct = () => {
+    let cartProductIds = [];
     cartProductIds = JSON.parse(localStorage.getItem("cartProductIds"));
     const filterByReference = (productsProps, cartProductIdsProps) => {
       let res = [];
@@ -32,8 +67,7 @@ const Basket = () => {
       return res;
     };
     setFilteredProducts(filterByReference(products, cartProductIds));
-  }, [products]);
-
+  };
 
   const getEmptyBasket = () => {
     localStorage.removeItem("cartProductIds");
@@ -162,4 +196,18 @@ const Basket = () => {
     </>
   );
 };
-export default Basket;
+
+const mapStateToProps = ({ auth: { authChecked, loggedIn, currentUser } }) => {
+  return { authChecked, loggedIn, currentUser };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchCheckAuth: () => dispatch(checkAuth()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Basket);
+Basket.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  currentUser: PropTypes.object.isRequired,
+};

@@ -254,18 +254,6 @@ export default function Products() {
                 pt: 1,
               }}
             >
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <Button
-                    sx={{ width: "100%", height: "58px" }}
-                    variant="outlined"
-                    color="primary"
-                    component="span"
-                  >
-                    Add
-                  </Button>
-                </Grid>
-              </Grid>
             </Box>
           </Container>
         </DialogContent>

@@ -10,11 +10,12 @@ import { connect } from "react-redux";
 import { checkAuth } from "../store/actions/auth";
 
 const MainListItems = (props) => {
-  const [loggedIn, setloggedIn] = useState()
+  const [loggedIn, setloggedIn] = useState();
   useEffect(() => {
     // eslint-disable-next-line react/prop-types
     setloggedIn(props.loggedIn)
-  }, [])
+  // eslint-disable-next-line react/prop-types
+  }, [props.loggedIn])
   
   return (
     <>

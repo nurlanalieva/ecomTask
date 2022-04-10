@@ -5,6 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import  MainListItems  from "../components/menuListItem";
 import { ShoppingCartOutlined } from "@mui/icons-material";
+import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import {
   List,
   CssBaseline,
@@ -123,6 +124,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               >
                 Dashboard
               </Typography>
+              <IconButton sx={{mr:3}} color="inherit">
+                <Link href="/auth/signin">
+                  <LockOpenOutlinedIcon />
+                </Link>
+              </IconButton>
               <IconButton color="inherit">
                 <Link href="/basket">
                   <ShoppingCartOutlined />

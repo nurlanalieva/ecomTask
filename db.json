@@ -216,6 +216,13 @@
       "firstname": "test1",
       "lastname": "test1",
       "id": 31
+    },
+    {
+      "email": "test@test2.com",
+      "password": "$2a$10$k0gvWPh77KtJwGMGL59JAe8OYRZ11wRPxQIp26x.7TQRX1vFaxUci",
+      "firstname": "test",
+      "lastname": "test",
+      "id": 32
     }
   ]
 }

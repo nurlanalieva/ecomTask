@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,20 +11,62 @@ import utilStyles from "../styles/utils.module.css";
 import { useGetProducts } from "../services/products";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import { connect } from "react-redux";
+import { checkAuth } from "../store/actions/auth";
+import { useEditProduct } from "../services/editProduct";
 
-function Dashboard() {
+const Dashboard = (props) => {
   const [retry, setRetry] = useState(false);
   const { products, loading } = useGetProducts(retry);
   const [productsId, setProductsId] = useState([]);
-  
-  
+  const [loggedIn, setloggedIn] = useState();
+  const [editItem, setEditItem] = useState({
+    base64: "",
+    stock: 0,
+    id: 0,
+    name: "",
+    price: "",
+    sale: 0,
+    userId: 0,
+  });
+
   const addProductToCart = (e, product) => {
     setRetry(!retry);
     if (!productsId.includes(product.id)) {
       setProductsId([...productsId, product.id]);
     }
-    localStorage.setItem("cartProductIds", JSON.stringify(productsId));
+      // eslint-disable-next-line react/prop-types
+    editItem.userId = props.currentUser.id;
+    setEditItem((editItem) => ({
+        ...editItem,
+        ...product
+      }));
+    console.log(product);
+    // setEditItem(product);
+    if (!loggedIn) {
+      console.log("user yoxduuu");
+      localStorage.setItem("cartProductIds", JSON.stringify(productsId));
+    } else {
+      console.log("user var deye bura girdi");
+      console.log(product.base64);
+      editProduct(product.id);
+    }
   };
+
+  const editProduct = (productId) => {
+    console.log(editItem);
+    const { data } = useEditProduct(productId, editItem);
+    console.log(data);
+  };
+
+  useEffect(() => {
+    // eslint-disable-next-line react/prop-types
+    setloggedIn(props.loggedIn);
+  }, []);
+
+  useEffect(() => {
+    console.log(loggedIn);
+  }, []);
 
   return (
     <>
@@ -56,7 +98,7 @@ function Dashboard() {
                       component="img"
                       // image="https://source.unsplash.com/random"
                       image={product.base64}
-                      alt="random"
+                      alt="Product Image"
                     />
                     <CardContent sx={{ flexGrow: 1 }}>
                       <Typography gutterBottom variant="h6" component="h5">
@@ -91,6 +133,15 @@ function Dashboard() {
       )}
     </>
   );
-}
+};
 
-export default Dashboard;
+const mapStateToProps = ({ auth: { authChecked, loggedIn, currentUser } }) => {
+  return { authChecked, loggedIn, currentUser };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchCheckAuth: () => dispatch(checkAuth()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
