@@ -1,11 +1,13 @@
 import { AUTHENTICATED, NOT_AUTHENTICATED } from ".";
+import { domainUrlAuth } from "../../config/baseUrl";
+// import axios from "axios";
 
 const setToken = (token) => {
   localStorage.setItem("token", token);
   localStorage.setItem("lastLoginTime", new Date(Date.now()).getTime());
 };
 
-const getToken = () => {
+export const getToken = () => {
   const now = new Date(Date.now()).getTime();
   const thirtyMinutes = 1000 * 60 * 30;
   const timeSinceLastLogin = now - localStorage.getItem("lastLoginTime");
@@ -16,12 +18,12 @@ const getToken = () => {
 
 export const checkAuth = () => {
   return (dispatch) => {
-    return fetch("http://localhost:3001/current_user", {
+    return fetch(`${domainUrlAuth}current_user`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: getToken()
-      }
+        Authorization: getToken(),
+      },
     }).then((res) => {
       if (res.ok) {
         return res
@@ -36,22 +38,19 @@ export const checkAuth = () => {
 
 export const signupUser = (credentials) => {
   return (dispatch) => {
-    return fetch("http://localhost:4000/register", {
+    return fetch(`${domainUrlAuth}register`, {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(credentials )
+      body: JSON.stringify(credentials),
     }).then((res) => {
-        console.log(res.headers.get("Authorization"));
       if (res.ok) {
-        setToken(res.headers.get("Authorization"));
-        return res
-          .json()
-          .then((userJson) =>
-            dispatch({ type: AUTHENTICATED, payload: userJson.data })
-          );
+        return res.json().then((userJson) => {
+          setToken(userJson.accessToken);
+          dispatch({ type: AUTHENTICATED, payload: userJson.user });
+        });
       } else {
         return res.json().then((errors) => {
           dispatch({ type: NOT_AUTHENTICATED });
@@ -64,21 +63,19 @@ export const signupUser = (credentials) => {
 
 export const loginUser = (credentials) => {
   return (dispatch) => {
-    return fetch("http://localhost:4000/login", {
+    return fetch(`${domainUrlAuth}login`, {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(credentials)
+      body: JSON.stringify(credentials),
     }).then((res) => {
       if (res.ok) {
-        setToken(res.headers.get("Authorization"));
-        return res
-          .json()
-          .then((userJson) =>
-            dispatch({ type: AUTHENTICATED, payload: userJson.data })
-          );
+        return res.json().then((userJson) => {
+          setToken(userJson.accessToken);
+          dispatch({ type: AUTHENTICATED, payload: userJson.user });
+        });
       } else {
         return res.json().then((errors) => {
           dispatch({ type: NOT_AUTHENTICATED });
@@ -91,13 +88,13 @@ export const loginUser = (credentials) => {
 
 export const logoutUser = () => {
   return (dispatch) => {
-    return fetch("http://localhost:3001/logout", {
+    return fetch(`${domainUrlAuth}logout`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: getToken()
-      }
+        Authorization: getToken(),
+      },
     }).then((res) => {
       if (res.ok) {
         return dispatch({ type: NOT_AUTHENTICATED });

@@ -52,6 +52,8 @@ export default function Products() {
   };
 
   const editProduct = () => {
+    console.log(editItem);
+    
     editItem.base64 = picture.base64;
     const { data } = useEditProduct(editItem.id, editItem);
     console.log(data);

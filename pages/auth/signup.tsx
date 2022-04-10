@@ -2,7 +2,7 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from 'next/link';
+import Link from "next/link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -13,7 +13,8 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { signupUser } from "../../store/actions/auth";
 import { useRouter } from "next/router";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { Alert } from "@mui/material";
 
 export interface IErrorMessages {
   firstname: "";
@@ -29,15 +30,7 @@ const SignUp = (props) => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState({
-    status: false,
-    errorMessage: {
-      // firstname: "",
-      // lastname: "",
-      // email: "",
-      // password: "",
-    },
-  });
+  const [error, setError] = useState();
   const router = useRouter();
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -46,102 +39,10 @@ const SignUp = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(user, props);
-    let isError = false;
-    if (user.firstname === "") {
-      isError = true;
-      setError({
-        status: true,
-        errorMessage: {
-          firstname: "Firstname  is reguired",
-          lastname: "Firstname  is reguired",
-          email: "Firstname  is reguired",
-          password: "Firstname  is reguired",
-        },
-      });
-    }
-    if (user.lastname === "") {
-      isError = true;
-      setError((prev) => ({
-        ...prev,
-        status: true,
-        errorMessage: {
-          ...prev.errorMessage,
-          lastname: "Lastname  is reguired",
-        },
-      }));
-    }
-    // if (user.email === "") {
-    //   isError = true;
-    //   setError((prev) => ({
-    //     ...prev,
-    //     status: true,
-    //     errorMessage: {
-    //       ...prev.errorMessage,
-    //       email: "Email is reguired",
-    //     },
-    //   }));
-    // }
-    console.log(/^[A-Za-z0-9+_.-]+@(.+)$/.test(user.email));
-
-    if (!/^[A-Za-z0-9+_.-]+@(.+)$/.test(user.email)) {
-      isError = true;
-      setError((prev) => ({
-        ...prev,
-        status: true,
-        errorMessage: {
-          ...prev.errorMessage,
-          email: "Please enter correct email",
-        },
-      }));
-    }
-    if (user.password === "") {
-      isError = true;
-      setError((prev) => ({
-        ...prev,
-        status: true,
-        errorMessage: {
-          ...prev.errorMessage,
-          password: "Password is reguired",
-        },
-      }));
-    }
-    if (
-      !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{6,16}$/.test(
-        user.password
-      )
-    ) {
-      isError = true;
-      setError((prev) => ({
-        ...prev,
-        status: true,
-        errorMessage: {
-          ...prev.errorMessage,
-          password: "Please enter correct password",
-        },
-      }));
-    }
-    if (!isError) {
-      setError((prev) => ({
-        ...prev,
-        status: false,
-        errorMessage: {
-          // firstname: "",
-          // lastname: "",
-          // email: "",
-          // password: "",
-        },
-      }));
-      props
-        .dispatchSignupUser(user)
-        .then(() => router.push("/auth/signin"))
-        .catch((error) => setError(error));
-    }
-    // if (!error.status) {
-    //   props
-    //     .dispatchSignupUser(user)
-    //     .then(() => router.push("/auth/signin"))
-    //     .catch((error) => setError(error));
-    // }
+    props
+      .dispatchSignupUser(user)
+      .then(() => router.push("/auth/signin"))
+      .catch((error) => setError(error));
   };
   useEffect(() => {
     console.log(error);
@@ -222,6 +123,11 @@ const SignUp = (props) => {
                 />
               </Grid>
             </Grid>
+            {error ? (
+              <Alert sx={{ mt: 5 }} severity="error">
+                {error}
+              </Alert>
+            ) : null}
             <Button
               type="submit"
               fullWidth
@@ -232,7 +138,7 @@ const SignUp = (props) => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/auth/signin" >
+                <Link href="/auth/signin">
                   Already have an account? Sign in
                 </Link>
               </Grid>

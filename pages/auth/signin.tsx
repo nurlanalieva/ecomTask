@@ -14,16 +14,15 @@ import { connect } from "react-redux";
 import { loginUser } from "../../store/actions/auth";
 import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { Alert } from '@mui/material';
  
 const theme = createTheme();
  const SignIn=(props)=> {
   const [user, setUser] = useState({
-    firstname: "",
-    lastname: "",
     email: "",
     password: "",
-    errors: { status: { message: "" } },
   });
+  const [error, setError] = useState()
 
   const router = useRouter()
 
@@ -38,7 +37,7 @@ const theme = createTheme();
       props
       .dispatchLoginUser(user)
       .then(() => router.push("/") )
-      // .catch(() => this.setState({ error: true }));
+      .catch((err) => setError(err));
     }
   };
 
@@ -83,6 +82,11 @@ const theme = createTheme();
               onChange={handleChange}
               defaultValue={user.password}
             />
+             {error ? (
+              <Alert sx={{ mt: 5 }} severity="error">
+                {error}
+              </Alert>
+            ) : null}
             <Button
               type="submit"
               fullWidth
