@@ -219,10 +219,17 @@
     },
     {
       "email": "test@test2.com",
-      "password": "$2a$10$k0gvWPh77KtJwGMGL59JAe8OYRZ11wRPxQIp26x.7TQRX1vFaxUci",
+      "password": "$2a$10$gBnIfyGEnMP8dJVfcQmnMOZiG.UI.GIMjH2KMw9ueXVELTZhL8di6",
+      "firstname": "test1",
+      "lastname": "test1",
+      "id": 32
+    },
+    {
+      "email": "test@rest.com",
+      "password": "$2a$10$j52c0drqfyyYsDbZbo8C0.vLje.W4wbj1hin/QBVzGyD4APe6aIli",
       "firstname": "test",
       "lastname": "test",
-      "id": 32
+      "id": 33
     }
   ]
 }
