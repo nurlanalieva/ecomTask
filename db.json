@@ -176,10 +176,10 @@
       "id": 25
     },
     {
-      "email": "sdfsd@dfsdf.dsfsdf",
-      "password": "$2a$10$ngelRIE0ys6Vza.1WOwm6uHXUN5Vi1z8a3V36BVaXzGERmE4s6tQW",
-      "firstname": "ffsdf",
-      "lastname": "sdfsdf",
+      "email": "fffd@sfsdf.az1",
+      "password": "$2a$10$xTZuluO5TZeGVaPAQrxsVuwDZpiVmq7bM2lVUQeZnf50WYPBZYbH6",
+      "firstname": "ffsdf1",
+      "lastname": "sdfsdf1",
       "id": 26
     },
     {
@@ -190,10 +190,10 @@
       "id": 27
     },
     {
-      "email": "sdfsdf@sada.az",
-      "password": "$2a$10$Gu1oRsIcxGpFHQej755IwubFhIR3ZqpDon15e/WvBVAxq2/1xl78y",
-      "firstname": "dfsf",
-      "lastname": "sdfsdf",
+      "email": "sdfs@dfsdf",
+      "password": "$2a$10$yNCXyHS.28FG/lBPUpiHTuMlM7/tNAJpBQx/sdJVWUDuzCw7b5bo6",
+      "firstname": "sdfsdf",
+      "lastname": "dfsdfs",
       "id": 28
     },
     {
@@ -209,6 +209,13 @@
       "firstname": "test122323",
       "lastname": "test",
       "id": 30
+    },
+    {
+      "email": "test@test.az1",
+      "password": "$2a$10$w6XXf5vVC5/6SrOJucowAORMNsHAgaEBS3lUegjDAGPyyQjokbt4u",
+      "firstname": "test1",
+      "lastname": "test1",
+      "id": 31
     }
   ]
 }

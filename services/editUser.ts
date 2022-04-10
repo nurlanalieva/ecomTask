@@ -4,6 +4,7 @@ import { getToken } from '../store/actions/auth'
 
 export const useEditUser = (id, data,setError) => {
   async function editProduct() {
+    setError('')
     domainUrl
     const url = `${domainUrlAuth}600/users/${id}`
     axios({
@@ -18,6 +19,7 @@ export const useEditUser = (id, data,setError) => {
       .then((res) => {
         console.log(res)
         data = res.data
+        setError('User info updated')
       })
       .catch((error) => {
         const err = error as AxiosError
@@ -26,6 +28,6 @@ export const useEditUser = (id, data,setError) => {
   }
   editProduct()
   return {
-    data,
+    data
   }
 }

@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Container, TextField, Button, Avatar, Box, Alert } from "@mui/material";
+import {
+  Grid,
+  Container,
+  TextField,
+  Button,
+  Avatar,
+  Box,
+  Alert,
+} from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { deepPurple } from "@mui/material/colors";
 import { connect } from "react-redux";
-import { checkAuth } from "../../store/actions/auth";
+import { checkAuth, logoutUser } from "../../store/actions/auth";
 import { useEditUser } from "../../services/editUser";
 import { useGetUser } from "../../services/user";
 import { IUser } from "../../interfaces/IUser";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { useRouter } from "next/router";
 
 const userProfile = (props) => {
   const { user } = useGetUser(props.currentUser.id);
-  // const [userId] = useState(props.currentUser.id);
-  // const [currentUser, setCurrentUser] = useState<IUser>();
-const [error, setError] = useState('')
-  const [currentUser, setCurrentUser] = useState({
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const [currentUser, setCurrentUser] = useState<IUser>({
     id: 0,
     firstname: "",
     lastname: "",
@@ -22,26 +31,8 @@ const [error, setError] = useState('')
   });
 
   useEffect(() => {
-    if (user) {
-      setCurrentUser( user  as IUser);
-    }
-    console.log(user);
-
-    // setCurrentUser({
-    //   id: user.id,
-    //   firstname: user.firstname,
-    //   lastname: user.lastname,
-    //   email: user.email,
-    //   password: user.password,
-    // });
-    console.log(typeof user?.id);
-    // console.log(userId);
+    setCurrentUser(user as IUser);
   }, [user]);
-
-
-  useEffect(() => {
-    console.log(currentUser);
-  }, [user,currentUser]);
 
 
   const handleChange = (e) => {
@@ -49,12 +40,12 @@ const [error, setError] = useState('')
   };
 
   const editUser = () => {
-    // setCurrentUser(user)
-    console.log(currentUser);
-    const { data } = useEditUser(currentUser.id, currentUser,setError);
-    console.log(data);
+     useEditUser(currentUser.id, currentUser, setError);
   };
 
+  const logout = () => {
+    props.dispatchLogoutUser().then(() => router.push("/auth/signin"));
+  };
   return (
     <>
       <Container sx={{ py: 8 }} maxWidth="lg">
@@ -81,9 +72,10 @@ const [error, setError] = useState('')
               required
               id="firstname"
               label="Firstname"
-              defaultValue={currentUser.firstname}
+              // defaultValue={currentUser?.firstname}
               name="firstname"
               onChange={handleChange}
+              value={currentUser?.firstname}
             />
           </Grid>
           <Grid item xs={4}>
@@ -91,7 +83,8 @@ const [error, setError] = useState('')
               required
               id="lastname"
               label="Lastname"
-              defaultValue={currentUser.lastname}
+              // defaultValue={currentUser?.lastname}
+              value={currentUser?.lastname}
               name="lastname"
               onChange={handleChange}
             />
@@ -101,25 +94,49 @@ const [error, setError] = useState('')
               required
               id="email"
               label="Email"
-              defaultValue={currentUser.email}
+              // defaultValue={currentUser?.email}
+              value={currentUser?.email}
               onChange={handleChange}
               name="email"
             />
           </Grid>
           <Grid sx={{ pt: 1 }} item xs={12}>
-          {error ? (
-              <Alert sx={{ mt: 3,mb:3 }} severity="error">
+            {error.includes("Email") ? (
+              <Alert sx={{ mt: 3, mb: 3 }} severity="error">
                 {error}
               </Alert>
+            ) : error === "User info updated" ? (
+              <Alert sx={{ mt: 3, mb: 3 }} severity="success">
+                User info updated
+              </Alert>
             ) : null}
-            <Button
-              variant="outlined"
-              size="large"
-              onClick={editUser}
-              startIcon={<EditOutlinedIcon />}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                p: 1,
+                m: 1,
+              }}
             >
-              Edit
-            </Button>
+              <Button
+                variant="outlined"
+                size="large"
+                color="error"
+                sx={{ mr: 3 }}
+                onClick={logout}
+                startIcon={<LogoutOutlinedIcon />}
+              >
+                Logout
+              </Button>
+              <Button
+                variant="outlined"
+                size="large"
+                onClick={editUser}
+                startIcon={<EditOutlinedIcon />}
+              >
+                Edit
+              </Button>
+            </Box>
           </Grid>
         </Grid>
       </Container>
@@ -134,10 +151,8 @@ const mapStateToProps = ({ auth: { authChecked, loggedIn, currentUser } }) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatchCheckAuth: () => dispatch(checkAuth()),
+    dispatchLogoutUser: () => dispatch(logoutUser()),
   };
 };
 
-// return connect(mapStateToProps, mapDispatchToProps)(userProfile);
 export default connect(mapStateToProps, mapDispatchToProps)(userProfile);
-
-// export default userProfile;

@@ -93,7 +93,7 @@ export const logoutUser = () => {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
-        Authorization: getToken(),
+        "Authorization": `Bearer ${getToken()}`,
       },
     }).then((res) => {
       if (res.ok) {

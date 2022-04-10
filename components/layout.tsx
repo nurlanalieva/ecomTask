@@ -3,7 +3,7 @@ import Head from "next/head";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { mainListItems } from "../components/menuListItem";
+import  MainListItems  from "../components/menuListItem";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import {
   List,
@@ -144,7 +144,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </IconButton>
             </Toolbar>
             <Divider />
-            <List component="nav">{mainListItems}</List>
+            <List component="nav">
+            <MainListItems />
+            </List>
           </Drawer>
           <Box
             component="main"
