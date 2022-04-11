@@ -21,53 +21,66 @@ const Basket = (props) => {
   const [retry, setRetry] = useState(false);
   const { products } = useGetProducts(retry);
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
+const [hasProduct, sethasProduct] = useState(false)
+const [cartProductIds, setCartProductIds] = useState([])
+//   useEffect(() => {
+//     setRetry(!retry);
+//     if (props.loggedIn) {
+//       console.log(props, "login olub");
+//       getLocalStorageProduct();
+// console.log(products);
+
+//           const userProductCart= products?.find((element) => {
+//             return element.userId === props.currentUser.id;
+//           });
+//           console.log(userProductCart);
+//     } else if (!props.loggedIn) {
+//       console.log("login olmayib");
+//       getLocalStorageProduct();
+//     }
+//   }, []);
+
+useEffect(() => {
+  if (products.length>0) {
+  sethasProduct(true)
+  }
+}, [products])
 
   useEffect(() => {
     setRetry(!retry);
-    if (props.loggedIn) {
-      console.log(props, "login olub");
-      getLocalStorageProduct();
-console.log(products);
-
-      // const filterByReference = (productsProps, currentUserId) => {
-        // let res = [];
-        // res = productsProps.filter((el) => {
-        // let userProductCart  = [];
           const userProductCart= products?.find((element) => {
             return element.userId === props.currentUser.id;
           });
-          // setFilteredProducts(userProductCart)
           console.log(userProductCart);
-        // });
-        // return res;
-      // };
-      // setFilteredProducts(filterByReference(products, props.currentUser.id));
-
-    } else if (!props.loggedIn) {
-      console.log("login olmayib");
-      getLocalStorageProduct();
-    }
-  }, []);
-  // useEffect(() => {
-  //  console.log(filteredProducts);
-   
-  // }, [filteredProducts])
+          // let cartProductIds =[];
+          setCartProductIds(JSON.parse(localStorage.getItem("cartProductIds")));
+          const filterByReference = (productsProps, cartProductIdsProps) => {
+            let res = [];
+            res = productsProps.filter((el) => {
+              return cartProductIdsProps?.find((element) => {
+                return element === el.id;
+              });
+            });
+            return res;
+          };
+          setFilteredProducts(filterByReference(products, cartProductIds));
+  }, [hasProduct]);
   
 
-  const getLocalStorageProduct = () => {
-    let cartProductIds = [];
-    cartProductIds = JSON.parse(localStorage.getItem("cartProductIds"));
-    const filterByReference = (productsProps, cartProductIdsProps) => {
-      let res = [];
-      res = productsProps.filter((el) => {
-        return cartProductIdsProps?.find((element) => {
-          return element === el.id;
-        });
-      });
-      return res;
-    };
-    setFilteredProducts(filterByReference(products, cartProductIds));
-  };
+  // const getLocalStorageProduct = () => {
+  //   let cartProductIds = [];
+  //   cartProductIds = JSON.parse(localStorage.getItem("cartProductIds"));
+  //   const filterByReference = (productsProps, cartProductIdsProps) => {
+  //     let res = [];
+  //     res = productsProps.filter((el) => {
+  //       return cartProductIdsProps?.find((element) => {
+  //         return element === el.id;
+  //       });
+  //     });
+  //     return res;
+  //   };
+  //   setFilteredProducts(filterByReference(products, cartProductIds));
+  // };
 
   const getEmptyBasket = () => {
     localStorage.removeItem("cartProductIds");

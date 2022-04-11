@@ -13,51 +13,60 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import { connect } from "react-redux";
 import { checkAuth } from "../store/actions/auth";
-import { useEditProduct } from "../services/editProduct";
+// import { useEditProduct } from "../services/editProduct";
 
 const Dashboard = (props) => {
   const [retry, setRetry] = useState(false);
   const { products, loading } = useGetProducts(retry);
   const [productsId, setProductsId] = useState([]);
   const [loggedIn, setloggedIn] = useState();
-  const [editItem, setEditItem] = useState({
-    base64: "",
-    stock: 0,
-    id: 0,
-    name: "",
-    price: "",
-    sale: 0,
-    userId: 0,
-  });
+  // const [editItem, setEditItem] = useState({
+  //   base64: "",
+  //   stock: 0,
+  //   id: 0,
+  //   name: "",
+  //   price: "",
+  //   sale: 0,
+  //   userId: 0,
+  // });
+
+  // const addProductToCart = (e, product) => {
+  //   setRetry(!retry);
+  //   if (!productsId.includes(product.id)) {
+  //     setProductsId([...productsId, product.id]);
+  //   }
+  //     // eslint-disable-next-line react/prop-types
+  //   editItem.userId = props.currentUser.id;
+  //   setEditItem((editItem) => ({
+  //       ...editItem,
+  //       ...product
+  //     }));
+  //   console.log(product);
+  //   // setEditItem(product);
+  //   if (!loggedIn) {
+  //     console.log("user yoxduuu");
+  //     localStorage.setItem("cartProductIds", JSON.stringify(productsId));
+  //   } else {
+  //     console.log("user var deye bura girdi");
+  //     console.log(product.base64);
+  //     editProduct(product.id);
+  //   }
+  // };
 
   const addProductToCart = (e, product) => {
     setRetry(!retry);
     if (!productsId.includes(product.id)) {
       setProductsId([...productsId, product.id]);
     }
-      // eslint-disable-next-line react/prop-types
-    editItem.userId = props.currentUser.id;
-    setEditItem((editItem) => ({
-        ...editItem,
-        ...product
-      }));
-    console.log(product);
-    // setEditItem(product);
-    if (!loggedIn) {
       console.log("user yoxduuu");
       localStorage.setItem("cartProductIds", JSON.stringify(productsId));
-    } else {
-      console.log("user var deye bura girdi");
-      console.log(product.base64);
-      editProduct(product.id);
-    }
   };
 
-  const editProduct = (productId) => {
-    console.log(editItem);
-    const { data } = useEditProduct(productId, editItem);
-    console.log(data);
-  };
+  // const editProduct = (productId) => {
+  //   console.log(editItem);
+  //   const { data } = useEditProduct(productId, editItem);
+  //   console.log(data);
+  // };
 
   useEffect(() => {
     // eslint-disable-next-line react/prop-types
